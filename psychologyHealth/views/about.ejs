@@ -1,17 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
+    <style>
+        p {
+          padding-left: 100px;
+          padding-right: 100px;
+          justify-content: left;
+        }
+        </style>
     <%- include('layouts/header'); -%>
-    <body>
+    <body style="background-color: rgb(197,227,236)">
         <%- include('layouts/navbar'); -%>
         <!-- Page Header-->
         <header class="masthead">
-                        <div class="page-heading">
+                        <div class="text-center py-4">
                             <h1>About Us</h1>
                             <span class="subheading">This is who we are.</span>
                         </div>
         </header>
         <!-- Main Content-->
         <main class="mb-4">
+            <div class = "text-center py-4">
+                <p style="font-weight: bold ;">
+                    Our Mission: <p>To provide mental health services using the best tecniques and technologies in our disposal to server our patients.
+                </p>
+                </p>
+
+            </div>
+            <div>
+                <p style="font-weight: bold;">
+                    Meet Dr. Hoffman: </br></p>
+                    <p>
+                    Graduated from Gotham University in 2007, he is an acomplished psychiatrist in the field.  Originally from Baltimore, MD, he moved to Gotham City for college.  He has been working with the practice since 2013.  
+                    Dr. Hoffman attempts to use technology to his benefit when assisting his patients.  His primary focus is working with young adults with mental health issues.
+                </p>
+            </div>
+            <div>
+            <p style="font-weight: bold"> 
+                Meet Dr. Gamble:</br></p>
+                <p>
+                Graduated from South Metropolis University in 2002, she has been practicing with us for over 15 years.  Originally from New York, NY, she moved to Gotham City to help those in need.
+                She is more of a traditional psychologist, where she prefers to use a more personal touch with her patients.  She specializes in the mental health of the elderly. 
+            </p>
+            </div>
+            <div class = "text-center py-4">
+                <img src="img/drGamble.jpg" width="150px" height="150px" alt="Dr. Gamble" title="Dr. Gamble" >
+                <img src="img/drHoffman.jpg" width="150px"height="150px" alt="Dr. Hoffman" title="Dr. Hoffman">
+                
+            </div>
         </main>
+        <%- include('layouts/footer'); -%>
     </body>
 </html>
