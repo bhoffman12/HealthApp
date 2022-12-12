@@ -2,19 +2,68 @@
 <html lang="en">
 <%- include('layouts/header'); -%>
 
-    <body>
+<style>
+    .homeContainer {
+      display: flex;
+      align-items: center;
+      justify-content: left;
+    }
+    img {
+      max-width: 150%
+    }
+    .homeImage {
+      flex-basis: 22%
+    }
+    .homeText {
+      font-size: 20px;
+      padding-left: 300px;
+    }
+
+  </style>
+
+    <body style="background-image: url('img/coffee.jpg'); background-size: 400px 750px; background-repeat: no-repeat; background-position: 0% 0%; ">
         <%- include('layouts/navbar'); -%>
+
+          
             <!-- Page Header-->
-            <header class="masthead" style="background-image: url('assets/img/about-bg.jpg')">
+            <header class="masthead" style="background-image: url('assets/img/.jpg')">
                 <div class="page-heading">
-                    <h1>Home page</h1>
-                    <span class="subheading">Home page subheading</span>
+                    <h1 style = "text-align: center;">Psychology Health Care<space></space></h1>
+                    <h5 style = "text-align: center;"class="subheading"style = "text-align: justify;">Where your Mental Health comes first<space></space></h5>
                 </div>
             </header>
             <!-- Main Content-->
 
-            <main class="mb-4">
-            </main>
-    </body>
 
+
+    <main class="mb-4">
+            <div class="homeContainer"class="vert-nav-ul">
+                <ul style="background-color: #f1f1f1;">
+                    <li class="vert-nav-li"><a href="/home">Home </a></li>
+                    <li class="vert-nav-li"><a href="/viewAppointment">Appointments</a></li>
+                    <li class="vert-nav-li"><a href="/messages">Messages</a></li>
+                    <li class="vert-nav-li"><a href="/prescriptions">Prescriptions</a></li>
+                    <li class="vert-nav-li"><a href="/contact">Contact Info</a></li>
+                    <li class="vert-nav-li"><a href="/about">About</a></li>
+                  </ul>
+                  <div class="homeText">
+                <p>
+                </br>
+                        Welcome to Psychology Health care. </br>
+                        We work with out patients to provide the best health care for your mental health.</br>
+                        See our Services below:
+
+                        <ul>
+                            <li> Reqeust an appointment with one of our doctors.</li>
+                            <li> Send a message to your doctor.</li>
+                            <li> Reqeust a prescription to be filled by your doctor.</li>
+                            <li>See our about page to learn more about our doctors.</li>
+                            <li>Update your contact information on our contacts page.</li>
+                        </ul>
+                </p>
+            </div>
+        </div>
+    </main>
+    <%- include('layouts/footer'); -%>
+    </body>
 </html>
