@@ -1,4 +1,5 @@
 const express = require("express");
+const express = require("express");
 const router = express.Router();
 const {
     register,
@@ -10,10 +11,15 @@ const {
     messages,
     addDoctor,
     cancelAppointment,
+    createPrescription,
+    updatePrescription,
+    cancelPrescription,
+    getPrescription,
 } = require('../controllers/user');
 const Appointment = require("../models/Appointment");
 const Doctor = require("../models/Doctor");
 const Message = require("../models/Message");
+const Prescription = require("../models/Prescriptions");
 const User = require("../models/User");
 
 
@@ -30,9 +36,18 @@ router.get('/about', (req, res) => {
     res.render('about');
 });
 
-router.get('/contact', (req, res) => {
-    res.render('contact');
+router.get('/contact', async (req, res) => {
+    let userList;
+    if (req.session.token) {
+        userList =  await User.find({userId: req.session.userId});
+        res.render('contact',{
+        userList,
+    });
+    }else {
+    res.redirect('/');
+    }
 });
+
 
 router.get('/home', (req, res) => {
     const { token, userName, role } = req.session;
@@ -103,11 +118,20 @@ router.get('/patient-messages', async (req, res) => {
 
 router.post("/messages", messages);
 
-
-
-router.get('/prescriptions', (req, res) => {
+router.get('/prescriptions', async (req, res) => {
+    let prescriptionList;
     if (req.session.token) {
-        res.render('prescriptions');
+        if (req.session.role === 'patient') {
+            prescriptionList = await Prescription.find({ userId: req.session.userId });
+        }
+        if (req.session.role === 'admin') {
+            prescriptionList = await Prescription.find({});
+        }
+        const doctorList = await Doctor.find({});
+        res.render('prescriptions', {
+            prescriptionList,
+            doctorList
+        });
     } else {
         res.redirect('/');
     }
@@ -118,11 +142,18 @@ router.post("/users/register", register);
 router.post("/users/login", login);
 router.get("/users/logout", logout);
 
+
 //APPOINTMENT ROUTE
 router.post("/appointment/create", createAppointment);
 router.get("/cancel-appointment/:id", cancelAppointment);
 router.get("/updateAppointment/:id", getAppointment);
 router.post("/appointment/:id", updateAppointment);
+
+//PRESCRIPTION ROUTE
+router.post("/prescription/create", createPrescription);
+router.get("/cancel-prescription/:id", cancelPrescription);
+router.get("/updatePrescription/:id", getPrescription);
+router.post("/prescription/:id", updatePrescription);
 
 
 module.exports = router;
