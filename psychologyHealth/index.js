@@ -6,11 +6,14 @@ const app = new express();
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
-const port = process.env.PORT || 8000;
+let port = process.env.PORT;
+if (port == null || port == ""){
+    port = 8000;
+}
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://recepi:recepi123@cluster0.5xe8j.mongodb.net/Ecomm-App?retryWrites=true&w=majority', { useNewUrlParser: true })
-
+mongoose.connect('mongodb+srv://bhoffman823:99FIDDLEsticks!@cluster0.ksw18zz.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true })
+//mongoose.connect('mongodb+srv://recepi:recepi123@cluster0.5xe8j.mongodb.net/Ecomm-App?retryWrites=true&w=majority', { useNewUrlParser: true })
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
