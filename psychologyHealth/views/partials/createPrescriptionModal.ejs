@@ -1,0 +1,52 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Request Prescription</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body px-5 pb-5">
+                <form action="/prescription/create" method="POST">
+                    <div class="prescription">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="pb-2">Patient Name:</label>
+                                <input required type="text" class="form-control mb-3" placeholder="John Doe" value = "" id="patientName889"
+                                    name="patientName">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="pb-2">Patient Birthdate:</label>
+                                <input required type="date" class="form-control mb-3" placeholder="" id="patientBirth"
+                                    name="patientBirth">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="pb-2">Prescription Name:</label>
+                                <input required type="text" class="form-control mb-3" placeholder="Advil" value = "" id="prescriptionName"
+                                    name="prescriptionName">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="pb-2">Prescription Dose:</label>
+                                <input required type="text" class="form-control mb-3" placeholder="1 ML" id="prescriptionDose"
+                                    name="prescriptionDose">
+                            </div>
+                        </div>
+                        <label class="pb-2">Doctors Name:</label>
+                        <select name="doctor" required class="form-select mb-3">
+                            <option selected disabled value="">Select doctor</option>
+                            <% doctorList.forEach(function(item,index){ %>
+                                <option value="<%= item.fullname %>">
+                                    <%= item.fullname %>
+                                </option>
+                                <% }); %>
+                        </select>
+                    </div>
+                    <div class="d-grid gap-2 pt-2">
+                        <button class="btn btn-success" type="submit">Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
