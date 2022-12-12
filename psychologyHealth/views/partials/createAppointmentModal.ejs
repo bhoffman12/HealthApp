@@ -1,0 +1,54 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Make Appointments</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body px-5 pb-5">
+                <form action="/appointment/create" method="POST">
+                    <div class="appointment">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="pb-2">First Name:</label>
+                                <input required type="text" class="form-control mb-3" placeholder="John" id="fname"
+                                    name="fname">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="pb-2">Last Name:</label>
+                                <input required type="text" class="form-control mb-3" placeholder="Doe" id="lname"
+                                    name="lname">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="pb-2">Phone Number:</label>
+                                <input required type="number" class="form-control mb-3" placeholder="XXX-XXX-XXXX"
+                                    id="phone" name="phone">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="pb-2">Email:</label>
+                                <input required type="email" class="form-control mb-3" placeholder="email@example.com"
+                                    id="email" name="email">
+                            </div>
+                        </div>
+                        <label class="pb-2">Consultant Name:</label>
+                        <select name="doctor" required class="form-select mb-3">
+                            <option selected disabled value="">Select doctor</option>
+                            <% doctorList.forEach(function(item,index){ %>
+                                <option value="<%= item.fullname %>">
+                                    <%= item.fullname %>
+                                </option>
+                                <% }); %>
+                        </select>
+                        <label class="pb-2">Date and Time:</label>
+                        <input required class="form-control mb-3" type="datetime-local" id="datetime" name="datetime">
+                    </div>
+                    <div class="d-grid gap-2 pt-2">
+                        <button class="btn btn-success" type="submit">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

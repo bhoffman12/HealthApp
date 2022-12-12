@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+
+    <body>
+        <%- include('layouts/navbar'); -%>
+            <!-- Page Header-->
+            <header class="masthead">
+                <div>
+                    <div class="page-heading">
+                        <h1>View Appointments</h1>
+                        <h3>View List of appointments below: </h3>
+                    </div>
+            </header>
+            <!-- Main Content-->
+            <main class="mb-4">
+                </div class="appointment-links">
+                <% for (var i=0; i < addAppointment.length; i++) { %>
+                    <a href="/post/<%=addAppointment[i]._id %>">
+                        <table>
+                            <thead>
+                                <th>
+                                    <%= addAppointment[i].fname %>
+                                        <space></space>
+                                        <%= addAppointment[i].lname %>
+                                </th>
+                            </thead>
+
+                        </table>
+                        <% } %>
+                    </a>
+                    <br>
+                    <form action="/appointments">
+                        <input type="submit" value="Add Appointment" />
+                    </form>
+                    </div>
+            </main>
+    </body>
+
+</html>

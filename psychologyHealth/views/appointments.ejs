@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+
+    <body>
+        <%- include('layouts/navbar'); -%>
+            <!-- Page Header-->
+            <header>
+                <div class="text-center py-5">
+                    <h2>Appointments</h2>
+                </div>
+            </header>
+            <!-- Main Content-->
+            <main class="mb-5 container">
+                <!-- Button trigger modal -->
+                <% if (role==='patient' ) { %>
+                    <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        Make Appointments
+                    </button>
+                    <% } %>
+
+                        <h5>Patient appointment list:</h5>
+                        <div class="table-responsive">
+                            <table class="table align-middle table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Sl.No.</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Doctor</th>
+                                        <th scope="col">Date/Time</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% appointmentList.forEach(function(appoint,index){ %>
+                                        <tr>
+                                            <td>
+                                                <%= index+1 %>
+                                            </td>
+                                            <td>
+                                                <%= appoint.fname %>
+                                                    <%= appoint.lname %>
+                                            </td>
+                                            <td>
+                                                <%= appoint.email %>
+                                            </td>
+                                            <td>
+                                                <%= appoint.phone %>
+                                            </td>
+                                            <td>
+                                                <%= appoint.doctor %>
+                                            </td>
+                                            <td>
+                                                <%= appoint.formatedDateTime %>
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-warning text-dark">Booked</span>
+                                            </td>
+                                            <td>
+                                                <a class="me-3 text-decoration-none"
+                                                    href="/cancel-appointment/<%= appoint._id %>">
+                                                    <button type="button" class="btn btn-danger btn-sm">
+                                                        Cancel
+                                                    </button>
+                                                </a>
+                                                <a href="/updateAppointment/<%= appoint._id %>">
+                                                    <button type="button" class="btn btn-secondary btn-sm">
+                                                        Update
+                                                    </button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <% if (appointmentList.length===0 ) { %>
+                            <p>No appointment found</p>
+                            <% } %>
+
+            </main>
+
+            <%- include('partials/createAppointmentModal'); -%>
+                <%- include('partials/updateAppointmentModal'); -%>
+    </body>
+
+</html>

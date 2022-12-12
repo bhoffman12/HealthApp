@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('layouts/header'); -%>
+    <body>
+        <!-- Navigation-->
+        <%- include('layouts/navbar'); -%>
+        <!-- Page Header-->
+
+        
+
+        <header class="masthead" style="background-image: url('assets/img/post-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+            </div>
+        </header>
+        <!-- Post Content-->
+
+        <form action="/posts/:id" method="POST">
+        <table border="1">
+            <thead>
+            <tr>
+            <th id="th1" style="width: 200px">Name</th>
+            <th id="th2" style="width: 200px">Phone</th>
+            <th id="th2" style="width: 200px">Email</th>
+            <th id="th2" style="width: 100px">Date</th>
+            <th id="th2" style="width: 100px;">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="width: 200px"> <%= appointment.fname %> <space></space> <%= appointment.lname %></td>
+                    <td style="width: 200px"> <%= appointment.phone %></td>
+                    <td style="width: 200px"> <%= appointment.email %></td>
+                    <td style = "width:400px"> <%= appointment.datetime %></td>
+                    <td style = "width:200px"><button type='submit' class="btn btn-lg">Delete</button></td>
+                    </tr>
+            </tbody>
+            </table>
+    </body>
+</form>
+</html>
+

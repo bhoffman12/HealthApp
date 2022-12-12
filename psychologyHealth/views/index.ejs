@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+
+    <body>
+        <%- include('layouts/navbar'); -%>
+            <div class="container pt-5">
+                <div class="row justify-content-center pt-5">
+                    <div class="col-md-5 p-5 " style="background: #f2f2f2;">
+                        <h5 class="pb-4">Login to your account</h5>
+                        <%- include('layouts/message'); -%>
+                            <form action="/users/login" method="POST">
+                                <label class="pb-2">User Name</label>
+                                <input required type="text" class="form-control" placeholder="User Name" id="username"
+                                    name="username">
+                                <label class="pt-3 pb-2">Password</label>
+                                <input required type="text" class="form-control" placeholder="Password" id="password"
+                                    name="password">
+                                <div class="d-grid gap-2 pt-4">
+                                    <button class="btn btn-primary" type="submit">Login</button>
+                                </div>
+                            </form>
+                    </div>
+                    <span class="pt-5 text-center">Don't have a account? <a href="/register">Register Now</a></span>
+                </div>
+            </div>
+    </body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+
+    <body>
+        <%- include('layouts/navbar'); -%>
+            <!-- Page Header-->
+            <header class="masthead">
+                <div class="text-center py-5">
+                </div>
+            </header>
+            <!-- Main Content-->
+            <main class="mb-5 container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 p-5 " style="background: #f2f2f2;">
+                        <h5 class="pb-4">Add doctor</h5>
+                        <% if (suc_message) { %>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <%= suc_message %><button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                            </div>
+                            <% } %>
+                                <form action="/add-doctor" method="POST">
+                                    <div class="appointment">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label class="pb-2">Full Name:</label>
+                                                <input required type="text" class="form-control mb-3" placeholder="John"
+                                                    id="fullname" name="fullname">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="pb-2">Phone Number:</label>
+                                                <input required type="number" class="form-control mb-3"
+                                                    placeholder="XXX-XXX-XXXX" id="phone" name="phone">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <label class="pb-2">Email:</label>
+                                                <input required type="email" class="form-control mb-3"
+                                                    placeholder="email@example.com" id="email" name="email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid gap-2 pt-4">
+                                        <button class="btn btn-primary" type="submit">Add Now</button>
+                                    </div>
+                                </form>
+                    </div>
+                </div>
+            </main>
+
+    </body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+
+    <body>
+        <%- include('layouts/navbar'); -%>
+            <!-- Page Header-->
+            <header class="masthead">
+                <div class="text-center py-5">
+                    <h5>Update your appointment</h5>
+                </div>
+            </header>
+            <!-- Main Content-->
+            <main class="mb-5 container">
+                <div class="row justify-content-center ">
+                    <div class="col-md-6 p-5" style="background: #f2f2f2;">
+                        <form action="/appointment/<%= appointment._id %>" method="POST">
+                            <div class="appointment">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="pb-2">First Name:</label>
+                                        <input required value="<%= appointment.fname %>" type="text"
+                                            class="form-control mb-3" placeholder="John" id="fname" name="fname">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="pb-2">Last Name:</label>
+                                        <input required value="<%= appointment.lname %>" type="text"
+                                            class="form-control mb-3" placeholder="Doe" id="lname" name="lname">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="pb-2">Phone Number:</label>
+                                        <input required value="<%= appointment.phone %>" type="number"
+                                            class="form-control mb-3" placeholder="XXX-XXX-XXXX" id="phone"
+                                            name="phone">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="pb-2">Email:</label>
+                                        <input value="<%= appointment.email %>" required type="email"
+                                            class="form-control mb-3" placeholder="email@example.com" id="email"
+                                            name="email">
+                                    </div>
+                                </div>
+                                <label class="pb-2">Consultant Name:</label>
+                                <select required name="doctor" class="form-select mb-3">
+                                    <% doctorList.forEach(function(item,index){ %>
+                                        <option <%=item.fullname===appointment.doctor ? 'selected' : '' %>
+                                            value="<%= item.fullname %>">
+                                                <%= item.fullname %>
+                                        </option>
+                                        <% }); %>
+                                </select>
+                                <label class="pb-2">Date and Time:</label>
+                                <input value="<%= appointment.datetime %>" required class="form-control mb-3"
+                                    type="datetime-local" id="datetime" name="datetime">
+                            </div>
+                            <div class="d-grid gap-2 pt-2">
+                                <button class="btn btn-success" type="submit">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+    </body>
+
+</html>

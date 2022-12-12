@@ -1,0 +1,68 @@
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class=" container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                </li>
+                <% if (role==='patient' ) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/viewAppointment">Appointments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/messages">Messages</a>
+                    </li>
+                    <% } %>
+                        <% if (role==='admin' ) { %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/viewAppointment">Appointments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/patient-messages">Messages</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/add-doctor">Add Doctor</a>
+                            </li>
+                            <% } %>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/prescriptions">Prescriptions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/contact">Contact Info</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/about">About</a>
+                                </li>
+            </ul>
+            <div>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <% if (isLoggedIn) { %>
+                        <li class="nav-item">
+                            <a class="nav-link">
+                                <small>
+                                    Hi, <%=username%>
+                                </small>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users/logout">Logout</a>
+                        </li>
+                        <% } else { %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/register">Register</a>
+                            </li>
+                            <% } %>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
