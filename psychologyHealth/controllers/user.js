@@ -5,6 +5,7 @@ const Appointment = require("../models/Appointment");
 const moment = require('moment');
 const Message = require("../models/Message");
 const Doctor = require("../models/Doctor");
+const Prescription = require("../models/Prescriptions")
 
 
 
@@ -65,7 +66,7 @@ exports.logout = async (req, res) => {
     req.session.destroy((err) => res.redirect('/'));
 };
 
-//CRAETE APPOINTMENT
+//CREATE APPOINTMENT
 exports.createAppointment = async (req, res) => {
     try {
         const newAppointment = new Appointment({
@@ -75,6 +76,20 @@ exports.createAppointment = async (req, res) => {
         });
         await newAppointment.save();
         res.redirect('/viewAppointment');
+    } catch (error) {
+        res.status(500).json({ message: "Something went wrong " + error });
+    }
+};
+
+//CREATE PRESCRIPTION
+exports.createPrescription = async (req, res) => {
+    try {
+        const newPrescription = new Prescription({
+            ...req.body,
+            userId: req.session.userId,
+        });
+        await newPrescription.save();
+        res.redirect('/prescriptions');
     } catch (error) {
         res.status(500).json({ message: "Something went wrong " + error });
     }
@@ -91,6 +106,17 @@ exports.getAppointment = async (req, res) => {
     }
 };
 
+//GET PRESCRIPTION BY ID
+exports.getPrescription = async (req, res) => {
+    try {
+        const prescription= await Prescription.findById(req.params.id).populate('doctor', 'username');
+        const doctorList = await Doctor.find({});
+        res.render('updatePrescription', { prescription, doctorList });
+    } catch (error) {
+        res.status(500).json({ message: "Something went wrong " + error });
+    }
+};
+
 //UPDATE APPOINTMENT
 exports.updateAppointment = async (req, res) => {
     try {
@@ -99,6 +125,18 @@ exports.updateAppointment = async (req, res) => {
             formatedDateTime: moment(req.body.datetime).format('MMM Do YYYY, h:mm a')
         });
         res.redirect('/viewAppointment');
+    } catch (error) {
+        res.status(500).json({ message: "Something went wrong " + error });
+    }
+};
+
+//UPDATE PRESCRIPTION
+exports.updatePrescription = async (req, res) => {
+    try {
+        await Prescription.findByIdAndUpdate(req.params.id, {
+            ...req.body,
+        });
+        res.redirect('/prescriptions');
     } catch (error) {
         res.status(500).json({ message: "Something went wrong " + error });
     }
@@ -120,7 +158,7 @@ exports.messages = async (req, res) => {
 };
 
 
-//GET APPOINTMENT BY ID
+//GET MESSAGE BY ID
 exports.patientMessages = async (req, res) => {
     try {
         const messages = await Message.find({});
@@ -131,6 +169,7 @@ exports.patientMessages = async (req, res) => {
         res.status(500).json({ message: "Something went wrong " + error });
     }
 };
+
 
 //ADD DOCTOR
 exports.addDoctor = async (req, res) => {
@@ -144,11 +183,21 @@ exports.addDoctor = async (req, res) => {
 };
 
 
-//ADD DOCTOR
+//CANCEL APPOINTMENTS
 exports.cancelAppointment = async (req, res) => {
     try {
         await Appointment.findByIdAndDelete(req.params.id);
         res.redirect('/viewAppointment');
+    } catch (error) {
+        res.status(500).json({ message: "Something went wrong " + error });
+    }
+}
+
+//CANCEL PRESCRIPTION
+exports.cancelPrescription = async (req, res) => {
+    try {
+        await Prescription.findByIdAndDelete(req.params.id);
+        res.redirect('/prescriptions');
     } catch (error) {
         res.status(500).json({ message: "Something went wrong " + error });
     }
